@@ -1,0 +1,52 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/static/css/index.css" />
+
+	<title></title>
+</head>
+
+<body>
+	<div id="root">
+		<div class="Swipe Swipe_full Destructor">
+			<div v-bind:style="{width:screen_width+'px',transitionDuration: '0s, transform: 'translate3d(0px, 0px, 0px)'}">
+				<div v-bind:style="{width:screen_width+'px'}" id="app">
+					<% include include/header.html %>
+					<div class="Swipe Swipe_full container-scroll Destructor">
+						<div
+							v-bind:style="{width:double_screen_width+'px', transitionDuration:  duration+'s', transform: 'translate3d('+position+'px, 0px, 0px)'}">
+							<div v-bind:style="{width:screen_width+'px'}">
+								<div class="Pull-scroll">
+									<div class="wrap">
+										<div class="new-page channel-page">
+											<% include include/index-top.html %>
+											<% include include/index-hot.html %>
+											<% include include/index-recommend.html %>
+											<% include include/index-female.html %>
+											<% include include/index-male.html %>
+											<% include include/index-free.html %>
+											<% include include/index-bottom.html %>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div v-bind:style="{width:screen_width+'px'}">
+								<% include include/index-shelf.html %>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/static/script/vue.js"></script>
+	<script src="/static/script/zepto.js"></script>
+	<script src="/static/script/pages/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<section class="top-home">
+	<a href="/search"><div class="top-home__search" data-href="#page=search">输入书名/作者/关键字</div></a>
+
+	<div class="Swipe slider-banner Destructor">
+		<div v-bind:style="{width:screen_width+'px',transitionDuration: '0s', transform: 'translate3d(0px, 0px, 0px)'}">
+			<div data-track="0" v-bind:style="{width:screen_width+'px'}" v-for="item in top" v-if="$index==0">
+				<a href="{{ item.reference_id }}">
+				<div class="u-topic">
+					<div class="banner">
+						<img class="cover" v-bind:src="item.ad_pic_url"></div>
+				</div>
+			</a>
+			</div>
+		</div>
+		<div class="Swipe-tab">
+			<a class="Swipe-tab__on"></a>
+		</div>
+	</div>
+
+	<ul class="top-home__btn">
+		<li>
+			<a href="/channel?id=male">
+				<img class="top-home__icon" src="/static/img/male.png">
+				<p class="top-home__des">男生</p>
+			</a>
+		</li>
+		<li>
+			<a href="/channel?id=female">
+				<img class="top-home__icon" src="/static/img/female.png">
+				<p class="top-home__des">女生</p>
+			</a>
+		</li>
+		<li>
+			<a href="/category">
+				<img class="top-home__icon" src="/static/img/category.png">
+				<p class="top-home__des">分类</p>
+			</a>
+		</li>
+		<li>
+			<a href="/rank">
+				<img class="top-home__icon" src="/static/img/rank.png">
+				<p class="top-home__des">排行</p>
+			</a>
+		</li>
+	</ul>
+
+</section>

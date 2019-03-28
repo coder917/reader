@@ -1,0 +1,112 @@
+<section class="channel-h5 channel-h5_tab" id="Tag__20">
+	<div class="channel-h5__header">
+		<p class="channel-h5__title channel-group__title_left">
+			重磅推荐 <i>推</i>
+		</p>
+		<div class="tab">
+			<a href="javascript:" da="ch_418.2.t.1.0" v-on:click="tabOnSwitch(0)" class="{{ tabsex_1_class }}">男</a>
+			<a href="javascript:" da="ch_418.2.t.2.0" v-on:click="tabOnSwitch(1)" class="{{ tabsex_2_class }}">女</a>
+		</div>
+	</div>
+	<div class="tab__bd">
+		<div class="tab__wrap">
+			<div class="Fade list-h5__wrap">
+				<div style="visibility: visible;">
+					<ul class="list-h5">
+						<li v-for="item in recommend" v-if="$index==0">
+							<a href="/book?id={{ item.fiction_id }}">
+								<div class="book-h5">
+									<div class="book-h5__cover">
+										<img alt="{{ item.title }}" v-bind:src="item.cover">
+										<div class="u-tagRT"></div>
+										<p class="book-h5__finish" v-if="item.finish==true">完结</p>
+										<p class="book-h5__finish" v-else>连载</p>
+										<div class="book-h5__order">1</div>
+									</div>
+									<div class="book-h5__info">
+										<p class="book-h5__title">{{ item.title }}</p>
+										<p class="book-h5__author">
+											<span class="author">{{ item.authors }}</span>
+										</p>
+										<p class="book-h5__summary">{{ item.summary }}</p>
+										<div class="book-h5__wrap">
+											<div class="book-h5__tag" v-for="tag in item.tag">{{ tag }}</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li v-for="item in recommend" v-if="$index>0 && $index<5">
+							<a href="/book?id={{ item.fiction_id }}">
+								<div class="book-h5 book-h5_no-img">
+									<span class="book-h5_no-img__order">0{{ $index+1 }}</span>
+									<div class="book-h5_no-img__info">
+										<p class="book-h5_no-img__title">
+											{{ item.title }} 
+											<i class="book-h5_no-img__author">
+												<span
+													class="author">{{ item.authors }}</span></i>
+										</p>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="channel-h5__footer_next">
+				<a class="btn-h5__next" href="javascript:" v-on:click="changeRecommend('recommend',1)">换一换</a>
+				<a class="btn-h5__more" href="/channel?id=male">查看全部</a>
+			</div>
+		</div>
+		<div class="tab__wrap" style="display:none">
+			<div class="Fade list-h5__wrap">
+				<div style="visibility: visible;">
+					<ul class="list-h5">
+						<li v-for="item in recommend" v-if="$index==15">
+							<a href="/book?id={{ item.fiction_id }}">
+								<div class="book-h5">
+									<div class="book-h5__cover">
+										<img alt="{{ item.title }}" v-bind:src="item.cover">
+										<div class="u-tagRT"></div>
+										<p class="book-h5__finish" v-if="item.finish==true">完结</p>
+										<p class="book-h5__finish" v-else>连载</p>
+										<div class="book-h5__order">1</div>
+									</div>
+									<div class="book-h5__info">
+										<p class="book-h5__title">{{ item.title }}</p>
+										<p class="book-h5__author">
+											<span class="author">{{ item.authors }}</span>
+										</p>
+										<p class="book-h5__summary">{{ item.summary }}</p>
+										<div class="book-h5__wrap">
+											<div class="book-h5__tag" v-for="tag in item.tag">{{ tag }}</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li v-for="item in recommend" v-if="$index>15 && $index<20">
+							<a href="/book?id={{ item.fiction_id }}">
+								<div class="book-h5 book-h5_no-img">
+									<span class="book-h5_no-img__order">0{{ $index-14 }}</span>
+									<div class="book-h5_no-img__info">
+										<p class="book-h5_no-img__title">
+											{{ item.title }} <i class="book-h5_no-img__author"><span
+													class="author">{{ item.authors }}</span></i>
+										</p>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="channel-h5__footer_next">
+				<a class="btn-h5__next" href="javascript:" v-on:click="changeRecommend('recommend',2)">换一换</a>
+				<a class="btn-h5__more" href="/channel?id=female">查看全部</a>
+			</div>
+		</div>
+
+	</div>
+</section>

@@ -4,6 +4,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="/static/css/index.css"/>
+	<link rel="shortcut icon" href="/static/img/favicon2.png">	
 	<title></title>
 </head>
 <body>
@@ -81,20 +82,22 @@
 											<div class="cnt">
 												<ul class="book-table">
 													<li data-track="0" v-for="book in author_books" >
-														<div class="u-book -vertical">
-															<div class="book-cover Lazy_loading Lazy_loaded">
-																<img alt="{{ book.title }}" v-bind:src="book.cover">								
-																<div class="u-tagRT"></div>
+														<a href="/book?id={{ item.fiction_id }}">
+															<div class="u-book -vertical">
+																<div class="book-cover Lazy_loading Lazy_loaded">
+																	<img alt="{{ book.title }}" v-bind:src="book.cover">								
+																	<div class="u-tagRT"></div>
+																</div>
+																<div class="info">
+																	<h3 class="title">{{ book.title }}</h3>
+																</div>
 															</div>
-															<div class="info">
-																<h3 class="title">{{ book.title }}</h3>
-															</div>
-														</div>
+														</a>
 													</li>
 												</ul>
 											</div>
 										</section>
-										<section class="main-card -folder">
+								<!--		<section class="main-card -folder">
 											<div class="u-title">
 												<h1>喜欢本书的人也喜欢</h1>
 											</div>
@@ -114,6 +117,7 @@
 												</ul>
 											</div>
 										</section>
+										-->
 										<section class="main-card -folder">
 											<div class="u-title">
 												<h1>图书信息</h1>

@@ -3,8 +3,10 @@ var koa_static = require('koa-static-server');
 var app = koa();
 var reload = require('auto-reload');
 var controller = require('koa-route');
-var service = require('./service/webAppService.js');
+var service = require('./service/webAppService.js')
 var views = require('co-views')
+// var synthesis=require('./service/AiSpeechSynthesis.js');
+
 var render = views('./view', {
   map: { html: 'ejs' }
 })
@@ -14,6 +16,8 @@ app.use(koa_static({
 	rootPath: '/static/',
 	maxage: 0
 }));
+
+
 
 //app.use(function *(){
   //this.body = 'Hello 1World';
@@ -130,3 +134,4 @@ app.use(controller.get('/ajax/search', function*(){
 	this.body = yield service.get_search_data(start,end,keyword);
 }));
 app.listen(3000);
+

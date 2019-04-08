@@ -310,7 +310,7 @@ body{
 .u-avatar{background:url(ZZpwWPWF.png) no-repeat;background-size:contain;}
 .icn-limit-free{background:url(6pxZdbSi.png) no-repeat;background-size:26px;}
 .u-loading i{background:url(8JzZJi8b.png) left center no-repeat;background-size:16px;}
-.u-grade .grade{background:url(8lqyfBwW.png) no-repeat;background-size:90px;}
+.u-grade .grade{background:url(../img/8lqyfBwW.png) no-repeat;background-size:90px;}
 .icn-tag{background:#4b79c2 url(XCVJzNwa.png) center no-repeat;background-size:26px;}
 .icn-avatar2{background:url(fmuhnAo@.png) no-repeat;background-size:84px;}
 .icn-catagory1,.icn-catagory2,.icn-catagory3,.icn-catagory4,.icn-arr-top,.icn-catagory-best{background:url(v3WqdeYP.png) no-repeat;background-size:16px;}
@@ -1317,7 +1317,7 @@ li.search-divider:first-child{border-top: none;}
 li.search-divider>div{padding: 13px 14px;}
 .like-icon{display:inline-block;height: 13px;width: 13px;background: url(P@pDzUUZ.png) center no-repeat;background-size: 13px;}
 .like-icon.-active{background-image:url(Oi19h9HM.png);}
-.u-grade .grade{background:url(8lqyfBwW.png) no-repeat;background-size:90px;}
+.u-grade .grade{background:url(../img/8lqyfBwW.png) no-repeat;background-size:90px;}
 
 
 
@@ -5643,6 +5643,7 @@ a.reader__ft-download:before {
 
 .rights{
     font-size:20px;
+    text-align: center;
 }
 
 

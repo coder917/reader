@@ -6,10 +6,14 @@ var controller = require('koa-route');
 var service = require('./service/webAppService.js')
 var views = require('co-views')
 // var synthesis=require('./service/AiSpeechSynthesis.js');
+var express = require('express');
+// app.use('/static',express.static('static'));//将文件设置成静态
 
 var render = views('./view', {
   map: { html: 'ejs' }
 })
+
+
 
 app.use(koa_static({
 	rootDir: './static/',
@@ -17,6 +21,11 @@ app.use(koa_static({
 	maxage: 0
 }));
 
+app.use(koa_static({
+	rootDir: './data/',
+	rootPath: '/data/',
+	maxage: 0
+}));
 
 
 //app.use(function *(){
@@ -113,7 +122,8 @@ app.use(controller.get('/ajax/category', function*(){
 
 app.use(controller.get('/ajax/book', function*(){
 	this.set('Cache-Control', 'no-cache');
-	var id = "";
+	var params = querystring.parse(this.req._parsedUrl.query);
+	var id = params.id;
 	this.body = service.get_book_data(id);
 }));
 
@@ -133,5 +143,6 @@ app.use(controller.get('/ajax/search', function*(){
 	var keyword = params.keyword;
 	this.body = yield service.get_search_data(start,end,keyword);
 }));
+
 app.listen(3000);
 

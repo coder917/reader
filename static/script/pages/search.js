@@ -1,9 +1,19 @@
+var windowWidth = $(window).width();
+if (windowWidth < 320) {
+	windowWidth = 320;
+}
+
+$('#app').css('width', windowWidth);
 new Vue({
 	el: '#app_search',
 	data: {
 		search:[],
 		condition:true,
-		empty:false
+		empty:false,
+		screen_width: windowWidth,
+		double_screen_width: windowWidth * 2,
+		duration: 0,
+		position: 0,
 	},
 	methods: {
 		doSearch: function(e) {
@@ -20,6 +30,11 @@ new Vue({
 					_this.empty = false;
 				}
 			},'json')
+		},
+		searchthis:function(e){
+			var text=$(this).html();
+			// console.log($(this));
+			console.log(text)
 		}
 	}
 });

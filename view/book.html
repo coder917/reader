@@ -3,6 +3,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
 	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
 	<link rel="stylesheet" href="/static/css/index.css"/>
 	<link rel="shortcut icon" href="/static/img/favicon2.png">	
 	<title></title>
@@ -15,7 +16,7 @@
 					<% include include/common-header.html %>
 					<div class="Swipe Swipe_full container-scroll Destructor">
 						<div style="width: 1468px; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-							<div style="width: 734px;">
+							<div style="width: 100vw;">
 								<div id="app">
 									<div class="new-page book-page" data-track="dt">
 										<section class="main-card">
@@ -35,8 +36,9 @@
 													</div>
 													<p class="price">价格：{{ item.price }}书币/千字</p>
 													<p class="count">
-														字数：{{ item.word_count }}字
-														<span class="u-booktag -serial">连载中</span>
+														字数：{{ Math.round(item.word_count/10000) }}万字
+														<span class="u-booktag -serial" v-if="item.finish==true">已完结</span>
+														<span class="u-booktag -serial" v-else>连载中</span>
 													</p>
 												</div>
 											</div>
@@ -82,7 +84,7 @@
 											<div class="cnt">
 												<ul class="book-table">
 													<li data-track="0" v-for="book in author_books" >
-														<a href="/book?id={{ item.fiction_id }}">
+														<a href="/book?id={{ book.fiction_id }}">
 															<div class="u-book -vertical">
 																<div class="book-cover Lazy_loading Lazy_loaded">
 																	<img alt="{{ book.title }}" v-bind:src="book.cover">								
@@ -139,8 +141,13 @@
 	</div>
 
 
-		<script src="/static/script/vue.js"></script>
+	<script src="/static/script/vue.js"></script>
 	<script src="/static/script/zepto.js"></script>
-	<script src="/static/script/pages/dist.js"></script>
+	<script>
+		window.jQuery = $;
+	</script>
+	<script src="/static/script/jquery.base64.js"></script>
+	<script src="/static/script/jquery.jsonp.js"></script>
+	<script src="/static/script/pages/book2.js"></script>
 </body>
 </html>

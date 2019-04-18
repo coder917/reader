@@ -707,11 +707,12 @@
 				var getCurChapterContent = function () {
 					//阅读器改造代码
 					$.get("/ajax/reader/content", {
+						bookid:Fiction_id,
 						chapterid: Chapter_id
 					}, function (data) {
 
 						if (data.result == 0) {
-							var url = data.jsonp;
+							var url = data.url;
 							Util.getBSONP(url, function (data) {
 								$('#init_loading').hide();
 								onChange_ && onChange_(data);
@@ -726,16 +727,16 @@
 
 				var getFictionInfoPromise = new Promise(function (resolve, reject) {
 					//阅读器改造代码
-					$.get("/ajax/reader/chapter", function (data) {
+					$.get("/ajax/reader/chapter?id="+Fiction_id, function (data) {
 						if (data.result == 0) {
-							Title = data.title;
+							Title = data.item.title;
 							$('#nav_title').html('返回书架');
-							window.ChaptersData = data.chapters;
-							window.chapter_data = data.chapters;
-							for (var i = 0; i < data.chapters.length; i++) {
+							window.ChaptersData = data.item.toc;
+							window.chapter_data = data.item.toc;
+							for (var i = 0; i < data.item.toc.length; i++) {
 								Chapters.push({
-									"chapter_id": data.chapters[i].chapter_id,
-									"title": data.chapters[i].title
+									"chapter_id": data.item.toc[i].chapter_id,
+									"title": data.item.toc[i].title
 								})
 							}
 							resolve(Chapters);
@@ -816,7 +817,9 @@
 				// 获取fiction_id 和 chapter_id
 				var RootContainer = $('#fiction_container');
 
-				var Fiction_id, Chapter_id;
+				var Fiction_id=window.location.href.split('?id=')[1];
+				console.log(Fiction_id);
+				var Chapter_id;
 
 				// 绑定事件
 				var ScrollLock = false;
@@ -848,7 +851,8 @@
 				var readerUIFrame = RenderBaseFrame(RootContainer);
 
 				//获得章节数据，展示
-				var readerModel = ReaderModel(Fiction_id || 13359, Chapter_id, function (data) {
+				
+				var readerModel = ReaderModel(Fiction_id, Chapter_id, function (data) {
 					readerUIFrame(data);
 					Dom.bottom_tool_bar.show();
 					setTimeout(function () {
@@ -1093,9 +1097,10 @@
 
 					//返回上级页面
 					Dom.back_button.click(function () {
-						if (Fiction_id) {
+						/*if (Fiction_id) {
 							location.href = '/book/' + Fiction_id;
-						}
+						}*/
+						window.history.back();
 					});
 
 					//返回首页
@@ -1118,14 +1123,15 @@
 					});
 
 					$('.icon-back').click(function () {
-						if (Fiction_id) {
+						/*if (Fiction_id) {
 							location.href = '/book/' + Fiction_id;
-						}
+						}*/
+						window.history.back();
 					});
 
 					$('#menu_button').click(function () {
 						location.href =
-							'http://dushu.xiaomi.com/#page=catalog&id=307812&type=fiction&chapter_id=0&_t=index.4.b.4*2_307812&&from=reader';
+							'/menu?id='+Fiction_id;
 					});
 
 					//屏幕中央事件

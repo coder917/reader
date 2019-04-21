@@ -1,16 +1,18 @@
 <section class="top-home">
-	<a href="/search"><div class="top-home__search" data-href="#page=search">输入书名/作者/关键字</div></a>
+	<a href="/search">
+		<div class="top-home__search" data-href="#page=search">输入书名/作者/关键字</div>
+	</a>
 
 	<div class="Swipe slider-banner Destructor">
 		<div v-bind:style="{width:screen_width+'px',transitionDuration: '0s', transform: 'translate3d(0px, 0px, 0px)'}">
-			<div data-track="0" v-bind:style="{width:screen_width+'px'}" v-for="item in top" v-if="$index==0">
-				<a href="{{ item.reference_id }}">
-				<div class="u-topic">
-					<div class="banner">
-						<img class="cover" v-bind:src="item.ad_pic_url"></div>
-				</div>
-			</a>
-			</div>
+			<!-- <div data-track="0" v-bind:style="{width:screen_width+'px'}"> -->
+				<a href="/topic"  v-for="item in top" v-if="$index==0">
+					<div class="u-topic">
+						<div class="banner">
+							<img class="cover" v-bind:src="item.ad_pic_url"></div>
+					</div>
+				</a>
+			<!-- </div> -->
 		</div>
 		<div class="Swipe-tab">
 			<a class="Swipe-tab__on"></a>

@@ -481,16 +481,15 @@ body{
 .u-topic .banner{
     width: 100%;
     line-height: 0;
-    position: relative;
-    
-    padding-top: 35.9375%;
+    font-size: 0;
     background-color: #eeece9;
 }
+.book-list li>.u-book {
+    padding: 13px 14px;
+}
 .u-topic .banner .cover{
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
+    min-height: 36vw;
 }
 
 

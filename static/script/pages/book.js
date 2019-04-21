@@ -68,9 +68,16 @@ $(function () {
       new Vue({
         el: '#app',
         data: d,
+        mounted(){
+          this.setBook();
+        },
         methods: {
           readBook: function () {
             location.href = "/reader?id=" + id;
+          },
+          setBook:function(){
+          loaclStorage.setItem("ficiton_reader_"+id,d.item);
+            console.log(d.item)
           }
         }
       });

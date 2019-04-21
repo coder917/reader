@@ -61,6 +61,7 @@ app.use(controller.get('/backet', function*(){
 app.use(controller.get('/book', function*(){
 	this.set('Cache-Control', 'no-cache');
 	var params = querystring.parse(this.req._parsedUrl.query);
+	console.log(params);
 	var bookId = params.id;
 	this.body = yield render('book',{nav:'书籍详情',bookId:bookId});
 }));
@@ -76,9 +77,19 @@ app.use(controller.get('/channel', function*(){
 	this.body = yield render('channel',{nav:'频道'});
 }));
 
+app.use(controller.get('/catelist', function*(){
+	this.set('Cache-Control', 'no-cache');
+	this.body = yield render('catelist',{nav:'分类'});
+}));
+
 app.use(controller.get('/rank', function*(){
 	this.set('Cache-Control', 'no-cache');
 	this.body = yield render('rank',{nav:'排行'});
+}));
+
+app.use(controller.get('/topic', function*(){
+	this.set('Cache-Control', 'no-cache');
+	this.body = yield render('topic',{nav:'主题'});
 }));
 
 app.use(controller.get('/category', function*(){
@@ -139,6 +150,11 @@ app.use(controller.get('/ajax/rank', function*(){
 	this.body = service.get_rank_data();
 }));
 
+app.use(controller.get('/ajax/topic', function*(){
+	this.set('Cache-Control', 'no-cache');
+	this.body = service.get_topic_data();
+}));
+
 app.use(controller.get('/ajax/category', function*(){
 	this.set('Cache-Control', 'no-cache');
 	this.body = service.get_category_data();
@@ -158,14 +174,28 @@ app.use(controller.get('/ajax/channel', function*(){
 	this.body = service.get_channel_data(id);
 }));
 
+app.use(controller.get('/ajax/catelist', function*(){
+	this.set('Cache-Control', 'no-cache');
+	var params = querystring.parse(this.req._parsedUrl.query);
+	var id = params.id;
+	this.body = service.get_catelist_data(id);
+}));
+
 app.use(controller.get('/ajax/search', function*(){
 	this.set('Cache-Control', 'no-cache');
 	var _this = this;
 	var params = querystring.parse(this.req._parsedUrl.query);
+	var s = params.s;
 	var start = params.start;
-	var end = params.end;
-	var keyword = params.keyword;
-	this.body = yield service.get_search_data(start,end,keyword);
+	var count = params.count;
+	var source = params.source;
+	this.body = yield service.get_search_data(start,count,s,source);
+}));
+
+app.use(controller.get('/ajax/searchtag', function*(){
+	this.set('Cache-Control', 'no-cache');
+	var _this = this;
+	this.body = yield service.get_search_tag();
 }));
 
 app.use(controller.get('/ajax/bookid', function*(){

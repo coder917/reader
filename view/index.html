@@ -38,15 +38,29 @@
 							</div>
 
 						</div>
-
+<div id="deleteConfirm" class="u-fixed popup-layer -hide" style="display:none"
+	vp-class="{'-show' : $root.state == $root.SHOWING, '-hide' : $root.state != $root.SHOWING }">
+	<div class="u-mask" @click="cancel()"></div>
+	<div class="container" vp-class="{ '-center': $root.isCenter }"
+		vp-click="!$root.unclosable &amp;&amp; $root.isCenter &amp;&amp; $root.close()">
+		<section class="confirm-menu">
+			<h3 class="title">确认删除</h3>
+			<div class="prompt">确认将本书从书架删除?</div><a class="button -cancel" @click="cancel()" vp-click="$root.cancel()">取消</a><a
+				class="button -confirm" vp-class="{ '-disable': $root.confirmDisable }"
+				vp-click="!$root.confirmDisable &amp;&amp; $root.confirm()" @click="confirm()">确定</a>
+		</section>
+	</div>
+</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<script src="/static/script/vue.js"></script>
 	<script src="/static/script/zepto.js"></script>
 	<script src="/static/script/pages/index.js"></script>
+	<script src="/static/script/pages/shelf.js"></script>
 </body>
 
 </html>

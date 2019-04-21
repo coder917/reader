@@ -12,9 +12,9 @@ $.get('/ajax/book?id=' + id, function (d, status) {
         }
       }
     });
-  } 
-  if(status=="error"){
-    $.get('/ajax/bookid?id='+id,function(d,status){
+  }
+  if (status == "error") {
+    $.get('/ajax/bookid?id=' + id, function (d, status) {
       console.log('get');
       new Vue({
         el: '#app',
@@ -25,18 +25,23 @@ $.get('/ajax/book?id=' + id, function (d, status) {
           }
         }
       });
-    },'json')
+    }, 'json')
   }
 }, 'json');
-$.get('/ajax/bookid?id='+id,function(d,status){
+$.get('/ajax/bookid?id=' + id, function (d, status) {
   console.log('get');
+  var obj = JSON.stringify(d.item)
+  window.localStorage.setItem("ficiton_reader_" + id, obj);
   new Vue({
     el: '#app',
     data: d,
     methods: {
       readBook: function () {
+        var obj = JSON.stringify(d.item)
+        window.localStorage.setItem("ficiton_reader_" + id, obj);
+        console.log(obj)
         location.href = "/reader?id=" + id;
       }
     }
   });
-},'json')
+}, 'json')

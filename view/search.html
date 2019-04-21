@@ -19,21 +19,14 @@
 							<div class="top">
 								<a href="javascript:history.back(-1)" class="top__back"></a>
 								<div id="search-input" class="search-input"> <b class="search-input__mi"></b>
-									<input type="text" value="" id="search_box" placeholder="输入书名/作者/关键字">
+									<input type="text" value="" id="search_box" v-focus placeholder="输入书名/作者/关键字">
 									<div class="search-input__btn" v-on:click="doSearch">搜索</div>
 								</div>
 							</div>
 							<div class="top__bd" v-show="condition">
 								<div>
 									<ul class="m-tag -color search-tag">
-										<li class="u-tag" id="Tag__128" v-on:click="searchthis">择天记</li>
-										<li class="u-tag" id="Tag__129" v-on:click="searchthis">复仇千金</li>
-										<li class="u-tag" id="Tag__130" v-on:click="searchthis">盗墓</li>
-										<li class="u-tag" id="Tag__131" v-on:click="searchthis">别那么骄傲</li>
-										<li class="u-tag" id="Tag__132" v-on:click="searchthis">庶女</li>
-										<li class="u-tag" id="Tag__133" v-on:click="searchthis">神医</li>
-										<li class="u-tag" id="Tag__134" v-on:click="searchthis">魔兽</li>
-										<li class="u-tag" id="Tag__135" v-on:click="searchthis">武动乾坤</li>
+										<li v-for="item in ads"  class="u-tag"  track-by="$index" v-on:click="searchTag">{{item.ad_name}}</li>
 									</ul>
 								</div>
 							</div>

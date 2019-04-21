@@ -4,8 +4,9 @@ var path = require('path'); //系统路径模块
 var http = require("http");
 var cheerio = require("cheerio");
 var html = "";
-var id=306643;
-var url = 'http://dushu.xiaomi.com/hs/v0/android/fiction/book/'+id;
+var id=24;
+// var url = 'http://dushu.xiaomi.com/hs/v0/android/fiction/book/'+id;
+var url='http://dushu.xiaomi.com/store/v0/fiction/category/'+id+'000000?start=0&count=10&click=1';
 var http_request = {
   hostname: 'dushu.xiaomi.com',
   port: 80,
@@ -26,10 +27,10 @@ res.setEncoding('utf8');
     console.log(html)
     // var str = JSON.stringify(html);
     // console.log(str);
-    var file = path.join(__dirname, '../data/book/'+id+'.json')
+    var file = path.join(__dirname, '../data/catelist/'+id+'000000.json')
     fs.writeFile(file, html, function (err) {
       if (err) {
-        return console.log(err);
+        // return console.log(err);
       }
       console.log('文件创建成功，地址：' + file);
     });

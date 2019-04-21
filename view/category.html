@@ -10,12 +10,12 @@
 <body>
 	<div id="root">
 		<div class="Swipe Swipe_full Destructor">
-			<div style="width: 734px; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-				<div style="width: 734px;">
+			<div style="width: 100vw; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+				<div style="width: 100vw;">
 					<% include include/common-header.html %>
 					<div class="Swipe Swipe_full container-scroll Destructor">
-						<div style="width: 1468px; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-							<div style="width: 734px;" >
+						<div style="width: 200vw; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+							<div style="width: 100vw;" >
 								<div id="app">
 									<div class="new-page cate-page" data-track="ca">
 										<main class="u-area">
@@ -25,10 +25,12 @@
 												</div>
 												<ul class="u-list-2col">
 													<li v-for="item in male">
-														<div class="u-cat-item" style="background-image:url({{item.new_image}}!m);">
-															<h3>{{item.label}}</h3>
-															<p class="num">{{item.fiction_count}}</p>
-														</div>
+														<a class="btn-h5__more" href="/catelist?id={{item.category_id}}">
+															<div class="u-cat-item" v-bind:style="{backgroundImage:'url('+item.new_image+'!m)'}">
+																<h3>{{item.label}}</h3>
+																<p class="num">{{item.fiction_count}}</p>
+															</div>
+														</a>
 													</li>
 												</ul>
 											</section>
@@ -38,10 +40,12 @@
 												</div>
 												<ul class="u-list-2col">
 													<li v-for="item in female">
-														<div class="u-cat-item" style="background-image:url({{item.new_image}}!m);">
-															<h3>{{item.label}}</h3>
-															<p class="num">{{item.fiction_count}}</p>
-														</div>
+														<a class="btn-h5__more" href="/catelist?id={{item.category_id}}">	
+															<div class="u-cat-item" v-bind:style="{backgroundImage:'url('+item.new_image+'!m)'}">
+																<h3>{{item.label}}</h3>
+																<p class="num">{{item.fiction_count}}</p>
+															</div>
+														</a>
 													</li>
 												</ul>
 											</section>

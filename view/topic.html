@@ -10,11 +10,18 @@
 </head>
 
 <body>
+  <div id="appLoading">
+    <img src="/static/img/load.gif" alt="loading" />
+  </div>
   <div id="root">
     <div class="Swipe Swipe_full Destructor">
-      <div v-bind:style="{width:screen_width+'px',transitionDuration: '0s, transform: 'translate3d(0px, 0px, 0px)'}">
-        <div v-bind:style="{width:screen_width+'px'}" id="app">
-          <% include include/common-header.html %>
+      <div v-bind:style="{width:'100vw',transitionDuration: '0s, transform: 'translate3d(0px, 0px, 0px)'}">
+        <div v-bind:style="{width:'100vw'}" id="app">
+          <div class="top">
+            <a class="top__back" href="javascript:history.back(-1)"></a>
+            <span class="top__title">{{label}}</span>
+            <a href="/" class="header-home"></a>
+          </div>
           <div class="top__bd" data-dom-uid="2">
             <div class="new-page topic-page">
               <section class="main-card" id="Tag__4">

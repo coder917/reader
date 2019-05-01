@@ -4,19 +4,22 @@
 	</a>
 
 	<div class="Swipe slider-banner Destructor">
-		<div v-bind:style="{width:screen_width+'px',transitionDuration: '0s', transform: 'translate3d(0px, 0px, 0px)'}">
-			<!-- <div data-track="0" v-bind:style="{width:screen_width+'px'}"> -->
-				<a href="/topic"  v-for="item in top" v-if="$index==0">
-					<div class="u-topic">
-						<div class="banner">
-							<img class="cover" v-bind:src="item.ad_pic_url"></div>
+		<div v-bind:style="{width:'100vw',transitionDuration: '0s', transform: 'translate3d(0px, 0px, 0px)'}">
+
+			<div class="u-topic" style="width:100vw">
+				<a href="/topic?id={{item.reference_id}}" v-for="item in top" v-if="$index<1">
+					<div class="banner">
+						<img class="cover" v-bind:src="item.ad_pic_url">
 					</div>
 				</a>
-			<!-- </div> -->
+			</div>
+
 		</div>
-		<div class="Swipe-tab">
+		<!--<div class="Swipe-tab">
 			<a class="Swipe-tab__on"></a>
-		</div>
+			<a class=""></a>
+			<i style="width: 18px; transform: translate3d(0px, 0px, 0px); transition-duration: 0s;"></i>
+		</div>-->
 	</div>
 
 	<ul class="top-home__btn">

@@ -1,0 +1,47 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="/static/css/index.css" />
+  <link rel="shortcut icon" href="/static/img/favicon2.png">
+  <title></title>
+</head>
+
+<body>
+  <div id="appLoading">
+    <img src="/static/img/load.gif" alt="loading" />
+  </div>
+  <div id="root">
+    <div class="Swipe Swipe_full Destructor">
+      <div style="width: 100vw; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+        <div style="width: 100vw;" id="app">
+          <% include include/common-header.html %>
+          <div class="top__bd" data-dom-uid="2">
+            <div class="new-page topiclist-page -fiction">
+              <ul class="topic-list">
+                <li v-for="item in items">
+                  <a href="/topic?id={{item.reference_id}}" >
+                    <div class="topic-item">
+                      <h3 class="title single-line">{{item.ad_name}}</h3>
+                      <p class="summary single-line">{{item.ad_copy}}</p>
+                      <div class="img-container"><img class="cover"
+                          v-bind:src="item.ad_pic_url"
+                          alt="{{item.ad_name}}"></div>
+                    </div>
+                  </a>
+                </li>      
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/static/script/vue.js"></script>
+  <script src="/static/script/zepto.js"></script>
+  <script src="/static/script/pages/topiclist.js"></script>
+</body>
+
+</html>

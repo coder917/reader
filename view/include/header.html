@@ -2,6 +2,6 @@
 	<div class="Swipe-tab Swipe-tab_2 f-cb">
 		<a href="javascript:" v-on:click="tabSwitch(0)" class="{{ tab_1_class }}"></a>
 		<a href="javascript:" v-on:click="tabSwitch(1)" class="{{ tab_2_class }}"></a>
-		<i v-bind:style="{width:index_header_tab_width+'px', transitionDuration:  header_duration+'s', transform: 'translate3d('+header_position+ 'px, 0px, 0px)'}"></i>
-	</div> <em class="header-user" data-href="#page=user_center"  onclick="javascript:location.href='/user-center'"></em> <em class="header-checkin" data-href="#page=checkin" onclick="javascript:location.href='/checkin'"></em>
+		<i v-bind:style="{width:'calc(50vw - 90px)', transitionDuration:  header_duration+'s', transform: 'translate3d('+header_position+ 'px, 0px, 0px)'}"></i>
+	</div> <em class="header-user" data-href="#page=user_center"  onclick="javascript:location.href='/user-center'"></em> <em class="header-checkin" data-href="#page=checkin"></em>
 </div>

@@ -1,28 +1,37 @@
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
 	<meta name="format-detection" content="telephone=no">
 	<meta http-equiv="Access-Control-Allow-Origin" content="*">
-	<link rel="stylesheet" href="/static/css/index.css"/>
-	<link rel="shortcut icon" href="/static/img/favicon2.png">	
+	<link rel="stylesheet" href="/static/css/index.css" />
+	<link rel="shortcut icon" href="/static/img/favicon2.png">
 	<title></title>
 </head>
+
 <body>
+	<div id="appLoading">
+		<img src="/static/img/load.gif" alt="loading" />
+	</div>
 	<div id="root">
 		<div class="Swipe Swipe_full Destructor">
-			<div style="width: 734px; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-				<div style="width: 734px;">
-					<% include include/common-header.html %>
+			<div style="width: 100vw; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+				<div style="width: 100vw;" id="app">
+					<div class="top">
+						<a class="top__back" href="javascript:history.back(-1)"></a>
+						<span class="top__title">{{ item.title }}</span>
+						<a href="/" class="header-home"></a>
+					</div>
 					<div class="Swipe Swipe_full container-scroll Destructor">
-						<div style="width: 1468px; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+						<div style="width: 200vw; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
 							<div style="width: 100vw;">
-								<div id="app">
+								<div>
 									<div class="new-page book-page" data-track="dt">
 										<section class="main-card">
 											<div class="u-book -detail">
 												<div class="book-cover Lazy_loading Lazy_loaded">
-													<img alt="{{ item.title }}" v-bind:src="item.cover">								
+													<img alt="{{ item.title }}" v-bind:src="item.cover">
 													<div class="u-tagRT"></div>
 												</div>
 												<div class="info">
@@ -31,12 +40,12 @@
 														<span class="author">{{ item.authors }}</span>
 													</p>
 													<div class="u-grade">
-														<div class="grade grade8"></div>
-														<span class="read">{{ item.score_count }}个评价</span>
+														<div class="grade"></div>
+														<span class="read">{{score.toFixed(1)}}分/{{ item.score_count }}人评过</span>
 													</div>
-													<p class="price">价格：{{ item.price }}书币/千字</p>
+													<p class="price">{{ item.price }}书币/千字</p>
 													<p class="count">
-														字数：{{ Math.round(item.word_count/10000) }}万字
+														{{ Math.round(item.word_count/10000) }}万字
 														<span class="u-booktag -serial" v-if="item.finish==true">已完结</span>
 														<span class="u-booktag -serial" v-else>连载中</span>
 													</p>
@@ -47,7 +56,7 @@
 											<div class="book-dash">
 												<div id="Tag__95">
 													<div class="wrap">
-							
+
 														<ul class="btn-group">
 															<li class="u-btn2" onclick="location.href='/reader?id={{ item.fiction_id }}'">
 																<span class="book-dash-text"></span>
@@ -61,8 +70,56 @@
 													{{ item.content }}
 												</div>
 												<div class="folder-tail">
-													<div>最新：{{ item.latest }}</div>
+													<strong>目录</strong>
+													<div onclick="location.href='/menu?id={{item.fiction_id}}'">{{ updated }}·连载至{{item.latest}}
+													</div>
 												</div>
+											</div>
+										</section>
+										<section class="main-card">
+											<div class="u-title">
+												<h1>书评</h1>
+											</div>
+											<div class="book-layout">
+												<div class="book-author-vv">
+													<img v-if="comment.author_icon.length>0" v-bind:src="comment.author_icon" class="book-author-avatar" alt="">
+														<img v-else src="/static/img/reader.png" class="book-author-avatar" alt="">
+												</div>
+												<div class="book-cell">
+													<div class="book-meta-comment">
+														<div class="book-meta-l">{{comment.author_nick}}</div>
+													</div>
+													<p class="book-comment-p comment-p">
+														{{comment.content}}
+													</p>
+													<div class="book-meta-comment book-time-count">
+														<div class="book-meta-l">
+															<time>{{created}}</time>
+														</div>
+													</div>
+												</div>
+											</div>
+										</section>
+										<section class="main-card -folder" v-if="author_books.length>0">
+											<div class="u-title">
+												<h1>作者其它图书</h1>
+											</div>
+											<div class="cnt">
+												<ul class="book-table">
+													<li data-track="0" v-for="book in author_books">
+														<a href="/book?id={{ book.fiction_id }}">
+															<div class="u-book -vertical">
+																<div class="book-cover Lazy_loading Lazy_loaded">
+																	<img alt="{{ book.title }}" v-bind:src="book.cover">
+																	<div class="u-tagRT"></div>
+																</div>
+																<div class="info">
+																	<h3 class="title">{{ book.title }}</h3>
+																</div>
+															</div>
+														</a>
+													</li>
+												</ul>
 											</div>
 										</section>
 										<section class="main-card">
@@ -77,29 +134,8 @@
 												</div><em class="folder-more"></em>
 											</div>
 										</section>
-										<section class="main-card -folder">
-											<div class="u-title">
-												<h1>作者其它图书</h1>
-											</div>
-											<div class="cnt">
-												<ul class="book-table">
-													<li data-track="0" v-for="book in author_books" >
-														<a href="/book?id={{ book.fiction_id }}">
-															<div class="u-book -vertical">
-																<div class="book-cover Lazy_loading Lazy_loaded">
-																	<img alt="{{ book.title }}" v-bind:src="book.cover">								
-																	<div class="u-tagRT"></div>
-																</div>
-																<div class="info">
-																	<h3 class="title">{{ book.title }}</h3>
-																</div>
-															</div>
-														</a>
-													</li>
-												</ul>
-											</div>
-										</section>
-								<!--		<section class="main-card -folder">
+
+										<!--		<section class="main-card -folder">
 											<div class="u-title">
 												<h1>喜欢本书的人也喜欢</h1>
 											</div>
@@ -150,4 +186,5 @@
 	<script src="/static/script/jquery.jsonp.js"></script>
 	<script src="/static/script/pages/book2.js"></script>
 </body>
+
 </html>

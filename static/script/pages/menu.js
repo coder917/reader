@@ -7,6 +7,16 @@ console.log(id)
 $.get('/ajax/reader/chapter?id=' + id,function(d){
 	new Vue({
 	  el: '#app',
-	  data: d
+		data: d,
+		created() {
+      try {
+        document.body.removeChild(document.getElementById('appLoading'))
+        setTimeout(function() {
+          document.getElementById('app').style.display = 'block';
+        }, 500)
+      } catch (e) {
+
+      }
+    }
   });
 },'json');

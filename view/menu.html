@@ -10,14 +10,18 @@
 </head>
 
 <body>
+  <div id="appLoading">
+    <img src="/static/img/load.gif" alt="loading" />
+  </div>
   <div id="root">
     <div class="Swipe Swipe_full Destructor">
-      <div style="width: 734px; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-        <div style="width: 734px;">
+      <div style="width: 100vw; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+        <div style="width: 100vw;">
           <% include include/common-header.html %>
           <div class="top__bd" data-dom-uid="2" id="app">
             <ul class="fiction-toc" v-for="section in item.toc">
-              <li class="fiction-toc__item fiction-toc__item_free"data-id="0">
+            
+              <li class="fiction-toc__item fiction-toc__item_free" onclick="location.href='/reader?id={{ item.fiction_id }}'+'&chapter_id={{section.chapter_id}}'">
                 <p>{{section.title}}</p>
               </li>
             </ul>

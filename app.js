@@ -11,7 +11,6 @@ var views = require('co-views')
 var express = require('express');
 // app.use('/static',express.static('static'));//将文件设置成静态
 
-app.use(cors());
 
 
 var render = views('./view', {
@@ -74,6 +73,12 @@ app.use(controller.get('/search', function*(){
 
 app.use(controller.get('/channel', function*(){
 	this.set('Cache-Control', 'no-cache');
+	var params = querystring.parse(this.req._parsedUrl.query);
+	console.log(params);
+	var channel = params.id;
+	var title;
+	if(channel==='male')title=='男生频道';
+	else{title=='女生频道'}
 	this.body = yield render('channel',{nav:'频道'});
 }));
 
@@ -82,9 +87,19 @@ app.use(controller.get('/catelist', function*(){
 	this.body = yield render('catelist',{nav:'分类'});
 }));
 
+app.use(controller.get('/rankitem', function*(){
+	this.set('Cache-Control', 'no-cache');
+	this.body = yield render('rankitem',{nav:'排行'});
+}));
+
 app.use(controller.get('/rank', function*(){
 	this.set('Cache-Control', 'no-cache');
 	this.body = yield render('rank',{nav:'排行'});
+}));
+
+app.use(controller.get('/topiclist', function*(){
+	this.set('Cache-Control', 'no-cache');
+	this.body = yield render('topiclist',{nav:'专题书单'});
 }));
 
 app.use(controller.get('/topic', function*(){
@@ -150,9 +165,16 @@ app.use(controller.get('/ajax/rank', function*(){
 	this.body = service.get_rank_data();
 }));
 
+app.use(controller.get('/ajax/topiclist', function*(){
+	this.set('Cache-Control', 'no-cache');
+	this.body = service.get_topiclist_data();
+}));
+
 app.use(controller.get('/ajax/topic', function*(){
 	this.set('Cache-Control', 'no-cache');
-	this.body = service.get_topic_data();
+	var params = querystring.parse(this.req._parsedUrl.query);
+	var id = params.id;
+	this.body = service.get_topic_data(id);
 }));
 
 app.use(controller.get('/ajax/category', function*(){
@@ -181,15 +203,48 @@ app.use(controller.get('/ajax/catelist', function*(){
 	this.body = service.get_catelist_data(id);
 }));
 
+app.use(controller.get('/ajax/rankitem', function*(){
+	this.set('Cache-Control', 'no-cache');
+	var params = querystring.parse(this.req._parsedUrl.query);
+	var id = params.id;
+	this.body = service.get_rankitem_data(id);
+}));
+
 app.use(controller.get('/ajax/search', function*(){
 	this.set('Cache-Control', 'no-cache');
 	var _this = this;
 	var params = querystring.parse(this.req._parsedUrl.query);
+	var url=this.url
+	console.log(url)
 	var s = params.s;
 	var start = params.start;
 	var count = params.count;
 	var source = params.source;
 	this.body = yield service.get_search_data(start,count,s,source);
+}));
+
+app.use(controller.get('/ajax/categoryclick', function*(){
+	this.set('Cache-Control', 'no-cache');
+	var _this = this;
+	var params = querystring.parse(this.req._parsedUrl.query);
+	var id = params.id;
+	this.body = yield service.get_categoryclick_data(id);
+}));
+
+app.use(controller.get('/ajax/categorylatest', function*(){
+	this.set('Cache-Control', 'no-cache');
+	var _this = this;
+	var params = querystring.parse(this.req._parsedUrl.query);
+	var id = params.id;
+	this.body = yield service.get_categorylatest_data(id);
+}));
+
+app.use(controller.get('/ajax/categoryfinish', function*(){
+	this.set('Cache-Control', 'no-cache');
+	var _this = this;
+	var params = querystring.parse(this.req._parsedUrl.query);
+	var id = params.id;
+	this.body = yield service.get_categoryfinish_data(id);
 }));
 
 app.use(controller.get('/ajax/searchtag', function*(){
@@ -206,6 +261,13 @@ app.use(controller.get('/ajax/bookid', function*(){
 	this.body = yield service.get_bookid_data(id);
 }));
 
+app.use(controller.get('/ajax/categorylist', function*(){
+	this.set('Cache-Control', 'no-cache');
+	var _this = this;
+	var params = querystring.parse(this.req._parsedUrl.query);
+	var id = params.id;
+	this.body = yield service.get_categorylist_data(id);
+}));
 
 
 app.listen(3000);

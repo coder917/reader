@@ -18,6 +18,16 @@ $.get('/ajax/searchtag', function (d) {
 			duration: 0,
 			position: 0,
 		},
+		created() {
+      try {
+        document.body.removeChild(document.getElementById('appLoading'))
+        setTimeout(function() {
+          document.getElementById('app').style.display = 'block';
+        }, 500)
+      } catch (e) {
+
+      }
+    },
 		mounter() {
 			window.search = this.search;
 			window.doSearch = this.doSearch;
@@ -34,7 +44,7 @@ $.get('/ajax/searchtag', function (d) {
 				var s = $('#search_box').val();
 				var _this = this;
 				$.get('/ajax/search', {
-					
+					start:0,
 					s:s,
 					
 				}, function (d) {

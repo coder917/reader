@@ -67,7 +67,10 @@
 			width: 100%;
 			z-index: 10002;
 		}
-
+.mid2{
+	z-index:10003;
+	display:none;
+}
 		.artical-action-bottom {
 			position: fixed;
 			bottom: 0px;
@@ -118,7 +121,7 @@
 			position: fixed;
 			top: 0px;
 			height: 50px;
-			background: #000;
+			background: #0c0c0c;
 			width: 100%;
 			opacity: 1;
 			z-index: 10004
@@ -137,7 +140,7 @@
 			background: #000;
 			width: 100%;
 			color: #fff;
-			opacity: 0.9;
+			opacity: 1;
 			z-index: 10003
 		}
 
@@ -148,7 +151,7 @@
 			background: none;
 			width: 100%;
 			color: #fff;
-			z-index: 10004
+			z-index: 10005
 		}
 
 		.listen-container {
@@ -161,7 +164,7 @@
 			padding: 5px 40px;
 			color: #fff;
 			display: inline-block;
-			border-radius: 16px;
+			border-radius: 5px;
 		}
 
 		.top-nav-pannel .bk-container {
@@ -200,8 +203,8 @@
 		.bottom-nav-bk {
 			position: fixed;
 			bottom: 0px;
-			height: 70px;
-			background: #000;
+			height: 120px;
+			background: #0c0c0c;
 			width: 100%;
 			opacity: .9;
 			z-index: 10004
@@ -210,8 +213,8 @@
 		.bottom-nav {
 			position: fixed;
 			bottom: 0px;
-			height: 70px;
-			background: none;
+			height: 120px;
+			background: black;
 			width: 100%;
 			opacity: 1;
 			z-index: 10004;
@@ -524,6 +527,24 @@
 			height: 266px;
 			z-index: 39999
 		}
+		.audiobutton{
+			margin: 6px 32px;
+			border-radius:5px;
+		}
+		.reader__ft-bar a {
+    float: left;
+    display: block;
+    width: 50%;
+    font-size: 13px;
+    line-height: 48px;
+    height: 48px;
+    color: #fff;
+    text-align: center;
+}
+.reader__ft-bar {
+    overflow: hidden;
+    border-bottom: 1px solid #333;
+}
 	</style>
 </head>
 
@@ -535,8 +556,9 @@
 		<div id="fiction_chapter_title"></div>
 		<div class="m-artical-action">
 			<div class="artical-action-mid" id="action_mid"></div>
+			<div class="artical-action-mid mid2" id="action_mid2"></div>
 		</div>
-		<div id="fiction_container" class="m-read-content"></div>
+		<div id="fiction_container" class="m-read-content" style="margin-top:43px"></div>
 		<div class="top-nav" id="top-nav" style="display:none">
 			<div class="top-nav-warp">
 				<div class="icon-back"></div>
@@ -566,8 +588,9 @@
 			<div class="child-mod">
 				<!-- <input type="text" id='text' value='百度语音合成' style='width: 500px;'> -->
 				<!-- <button onclick='tts()'>合成</button> -->
-				<button onclick='play()' id='playBtn'>播放</button>
-				<button onclick='pause()'>暂停</button>
+				<button onclick='play()' id='playBtn' class="audiobutton" style="float:left;">播放</button>
+				<button onclick='pause()' class="audiobutton" style="float:right;">暂停</button>
+				<button onclick='cancel()' class="audiobutton" style="margin: 58px auto;display: inherit;">退出朗读</button>
 				<!-- <button onclick='cancel()'>取消</button> -->
 			</div>
 		</div>
@@ -584,8 +607,12 @@
 		</div>
 		<div class="icon-listen" style="display: none" onclick='tts()'></div>
 		<div class="bottom-nav-bk bottom_nav" style="display:none"></div>
-
+		
 		<div class="bottom-nav bottom_nav" style="display:none">
+		<div class="reader__ft-bar">
+			<a href="javascript:" class="reader__prev-chapter">上一章</a>
+			<a href="javascript:" class="reader__next-chapter">下一章</a>
+		</div>
 			<div class="item menu-button" id="menu_button">
 				<div class="item-warp">
 					<div class="icon-menu"></div>
@@ -681,10 +708,16 @@
 				if (Util.StorageGetter(Fiction_id + 'last_chapter')) {
 					Chapter_id = Util.StorageGetter(Fiction_id + 'last_chapter');
 				}
+				var urlloc = window.location.href;
+				let urlarr = urlloc.split('chapter_id=');
+				var urlid = urlarr[1];
+				console.log(urlid);
+				if(urlid)Chapter_id =urlid;
 
 				if (!Chapter_id) {
 					Chapter_id = 0;
 				}
+				console.log(Chapter_id)
 				var Chapters = [];
 
 				var init = function () {
@@ -843,7 +876,8 @@
 					back_button: $('#back_button'),
 					top_nav: $('#top-nav'),
 					bottom_nav: $('.bottom_nav'),
-					icon_listen: $('.icon-listen')
+					icon_listen: $('.icon-listen'),
+					reader__ft:$('.reader__ft-bar')
 				}
 
 				// 程序初始化
@@ -872,17 +906,17 @@
 							fontcolor: 'rgb(65, 47, 5)'
 						},
 						{
-							bgimg: 'url(../static/img/flower2.png)',
+							bgimg: 'url(../static/img/flower3.png)',
 							name: '樱花',
 							fontcolor: 'rgb(65, 12, 42)'
 						},
 						{
 							bgimg: 'url(../static/img/ground.png)',
-							name: '山水',
-							fontcolor: 'rgb(34, 4, 4)',
-							id: "font_normal"
-						}, {
-							bgimg: 'url(../static/img/green.png)',
+							name: '山水1',
+							fontcolor: ''
+						},
+						{
+							bgimg: 'url(../static/img/green2.png)',
 							name: '护眼',
 							fontcolor: 'rgb(36, 71, 0)'
 						}, {
@@ -890,14 +924,14 @@
 							name: '山水2',
 							fontcolor: ''
 						}, {
-							bgimg: 'url(../static/img/blue.png)',
+							bgimg: 'url(../static/img/blue2.png)',
 							name: '灰蓝',
 							fontcolor: 'rgb(1, 19, 54)',
 							bottomcolor: '#fff'
 						}, {
-							bgimg: 'url(../static/img/night2.png)',
+							bgimg: 'url(../static/img/night3.png)',
 							name: '夜间',
-							fontcolor: '#4e534f',
+							fontcolor: 'rgb(165, 165, 165)',
 							bottomcolor: 'rgba(255,255,255,0.7)',
 							id: "font_night"
 						}
@@ -1048,7 +1082,7 @@
 							return;
 						}
 						InitFontSize -= 1;
-						localStorage.StorageSetter('font_size', InitFontSize);
+						Util.StorageSetter('font_size', InitFontSize);
 						RootContainer.css('font-size', InitFontSize);
 					});
 
@@ -1060,10 +1094,12 @@
 
 					font_button.click(function () {
 						if (font_container.css('display') == 'none') {
+							Dom.reader__ft.css('visibility','hidden');
 							font_container.show();
 							font_button.addClass('current');
 						} else {
 							font_container.hide();
+							Dom.reader__ft.css('visibility','visible');
 							font_button.removeClass('current');
 						}
 					});
@@ -1084,11 +1120,18 @@
 					});
 
 					//章节翻页
+					$('.reader__next-chapter').click(function () {
+						readerModel.next();
+						$('html').scrollTop(0);
+					});
 					Dom.next_button.click(function () {
 						readerModel.next();
 						$('html').scrollTop(0);
 					});
-
+					$('.reader__prev-chapter').click(function () {
+						readerModel.prev();
+						$('html').scrollTop(0);
+					});
 					Dom.prev_button.click(function () {
 						readerModel.prev();
 						$('html').scrollTop(0);
@@ -1106,15 +1149,19 @@
 					Dom.nav_title.click(function () {
 						location.href = '/';
 					});
-
+					var flag=0;
 					Dom.icon_listen.click(function () {
+						this.flag=1;
+						console.log(this.flag)
 						if (listen_container.css('display') == 'none') {
 							Dom.top_nav.hide();
 							Dom.bottom_nav.hide();
 							font_container.hide();
+							$("#action_mid").hide();
+							$("#action_mid2").show();
 							font_button.removeClass('current');
 							listen_container.show();
-
+							Dom.icon_listen.hide();
 						} else {
 							listen_container.hide();
 
@@ -1135,12 +1182,21 @@
 
 					//屏幕中央事件
 					$('#action_mid').click(function () {
-						
+					//	console.log(this.flag)
+					//	if(this.flag==1&&listen_container.css('display') != 'none'){
+				//			listen_container.show();
+				//		}
+					//	else if(flag==1&&listen_container.css('display') == 'none'){
+					//		listen_container.hide();
+					//	}
+					//	else 
 						if (Dom.top_nav.css('display') == 'none') {
 							Dom.bottom_nav.show();
+							Dom.reader__ft.css('visibility','visible');
 							Dom.top_nav.show();
 							Dom.icon_listen.show();
-						} else {
+						}
+						else {
 							Dom.bottom_nav.hide();
 							Dom.top_nav.hide();
 							Dom.icon_listen.hide();
@@ -1149,6 +1205,15 @@
 						}
 
 					});
+
+					$('#action_mid2').click(function () {
+						if (listen_container.css('display') == 'none'){
+							listen_container.show();
+						}else{
+							listen_container.hide();
+						}
+					})
+
 				})();
 			}
 
@@ -1162,6 +1227,7 @@
 		var arrAduio = [];
 		var ttsAudio = document.getElementById('tts_audio_id');
 		var pColor=$('p').css('color');
+		var audiotts={};
 		console.log(ttsAudio)
 		ttsAudio.addEventListener('ended', function () {
 			arrNex = arrNex + 1;
@@ -1171,6 +1237,14 @@
 				ttsAudio.play();
 				$('p').eq(arrNex).css('color','#d10000');				
 				return;
+			}
+			if(arrNex=arrAduio.length){
+				$('.reader__next-chapter').click();
+				setTimeout(function(){
+					$('.icon-listen').click();
+					arrNex = 0;
+					arrAduio = [];
+				},1000);
 			}
 		})
 		// dom加载完毕回调后注册按钮对象
@@ -1182,10 +1256,10 @@
 		function tts() {
 			//let text = document.getElementById('text').value;
 			var $array = $('#fiction_container p');
-			console.log($array)
+			//console.log($array)
 			for (let i = 0; i < $array.length; i++) {
 
-				setTimeout(function () {
+				audiotts[i]=setTimeout(function () {
 					//console.log($array[i].innerHTML)
 
 					//$('#fiction_container').children('p').each(function (index, element) {
@@ -1199,7 +1273,7 @@
 					audio = btts({
 						tex: text,
 						tok: '24.7f190123154813715cc23d46e2029dcb.2592000.1556624103.282335-15895030',
-						spd: 5,
+						spd: 15,//0-15
 						pit: 5,
 						vol: 15,
 						per: 4
@@ -1214,22 +1288,24 @@
 						onSuccess: function (htmlAudioElement) {
 							audio = htmlAudioElement;
 							playBtn.innerText = '播放';
-							console.log(audio.src);
+							//console.log(audio.src);
 							arrAduio.push(audio.src);
 						},
 						onError: function (text) {
-							alert(text)
+							console.log(text)
 						},
 						onTimeout: function () {
-							alert('timeout')
+							console.log('timeout')
 						}
 					});
 				}, i * 1000);
+				console.log(audiotts[i])
 			}
 			setTimeout(function () {
 				ttsAudio.src = arrAduio[arrNex];
-				console.log(arrAduio[arrNex])
-				$('p').eq(arrNex).css('color','#d10000');							
+				//console.log(arrAduio[arrNex])
+				$('p').eq(arrNex).css('color','#d10000');	
+				console.log(arrNex)						
 				ttsAudio.play();
 
 			},2000);
@@ -1258,10 +1334,16 @@
 			if (audio === null) {
 				alert('请先点击合成')
 			} else {
-				audio.pause();
-				document.body.removeChild(audio);
-				audio = null;
-				playBtn.innerText = '准备中';
+				ttsAudio.pause();
+				$('p').css('color',pColor);
+				for(var each in audiotts){
+					clearTimeout(audiotts[each]);
+				}
+				arrNex = 0;
+				arrAduio = [];
+				$('.listen-container').hide();
+				$('#action_mid2').hide();
+				$('#action_mid').show();
 			}
 		}
 

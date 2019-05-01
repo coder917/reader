@@ -10,15 +10,18 @@
 </head>
 
 <body>
+  <div id="appLoading">
+    <img src="/static/img/load.gif" alt="loading" />
+  </div>
 	<div id="root">
 		<div class="Swipe Swipe_full Destructor">
-			<div v-bind:style="{width:screen_width+'px',transitionDuration: '0s, transform: 'translate3d(0px, 0px, 0px)'}">
-				<div v-bind:style="{width:screen_width+'px'}" id="app">
+			<div v-bind:style="{width:'100vw',transitionDuration: '0s, transform: 'translate3d(0px, 0px, 0px)'}">
+				<div v-bind:style="{width:'100vw'}" id="app">
 					<% include include/header.html %>
 					<div class="Swipe Swipe_full container-scroll Destructor">
 						<div
-							v-bind:style="{width:double_screen_width+'px', transitionDuration:  duration+'s', transform: 'translate3d('+position+'px, 0px, 0px)'}">
-							<div v-bind:style="{width:screen_width+'px'}">
+							v-bind:style="{width:'200vw', transitionDuration:  duration+'s', transform: 'translate3d('+position+'px, 0px, 0px)'}">
+							<div v-bind:style="{width:'100vw'}">
 								<div class="Pull-scroll">
 									<div class="wrap">
 										<div class="new-page channel-page">
@@ -33,7 +36,7 @@
 									</div>
 								</div>
 							</div>
-							<div v-bind:style="{width:screen_width+'px'}">
+							<div v-bind:style="{width:'100vw'}">
 								<% include include/index-shelf.html %>
 							</div>
 

@@ -8,15 +8,24 @@
 	<title></title>
 </head>
 <body>
+  <div id="appLoading">
+    <img src="/static/img/load.gif" alt="loading" />
+  </div>
 	<div id="root">
 		<div class="Swipe Swipe_full Destructor">
-			<div style="width: 734px; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-				<div style="width: 734px;">
-					<% include include/common-header.html %>
+			<div style="width: 100vw; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+				<div style="width: 100vw;" id="app">
+          <div class="top">
+            <a class="top__back" href="javascript:history.back(-1)"></a>
+            <span class="top__title" v-if="id==='male'">男生频道</span>				
+            <span class="top__title" v-else>女生频道</span>					
+							
+            <a href="/" class="header-home"></a>
+          </div>
 					<div class="Swipe Swipe_full container-scroll Destructor">
-						<div style="width: 1468px; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+						<div style="width: 200vw; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
 							<div style="width: 100vw;" >
-								<div class="new-page channel-page" id="app">
+								<div class="new-page channel-page">
 									<section class="channel-group main-card" v-for="section in items">
 										<div class="channel-group__header">
 											<h2 class="channel-group__title channel-group__title_left">{{section.ad_name}}</h2>

@@ -8,12 +8,15 @@
 		<div>
 			<li v-for="item in topic">
 				<div class="banner-h5__cover">
-					<img class="cover" v-bind:src="item.ad_pic_url"></div>
+					<a href="/topic?id={{item.reference_id}}" >
+						<img class="cover" v-bind:src="item.ad_pic_url">
+					</a>
+					</div>
 			</li>
 		</div>
 	</ul>
 	<div class="channel-h5__footer" id="Tag__69">
-		<a class="btn-h5__more" data-href="#page=topic_list&amp;type=fiction&amp;_t=&amp;&amp;from=topic"
+		<a class="btn-h5__more" href="/topiclist"
 			da="ch_418.6.m.0">更多精彩专题&gt;&gt;</a>
 	</div>
 

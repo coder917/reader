@@ -8,24 +8,29 @@
 	<title></title>
 </head>
 <body>
+  <div id="appLoading">
+    <img src="/static/img/load.gif" alt="loading" />
+  </div>
 	<div id="root">
 		<div class="Swipe Swipe_full Destructor">
-			<div style="width: 734px; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-				<div style="width: 734px;">
+			<div style="width: 100vw; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+				<div style="width: 100vw;">
 					<% include include/common-header.html %>
 					<div class="Swipe Swipe_full container-scroll Destructor">
 						<div style="width: 1468px; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-							<div style="width: 734px;" >
+							<div style="width:100vw;" >
 								<div id="app">
 									<ul class="original-rank-list">
 										<li class="original-rank-list__item" v-if="$index>17" v-for="item in items">
-											<img v-bind:src="item.cover" class="original-rank-list__img">
-											<div class="original-rank-list__content">
-												<p class="original-rank-list__page" v-for="book in item.description">
-													<span class="original-rank-list__num">{{ $index + 1}}</span>
-													{{ book }}
-												</p>
-											</div>
+											<a class="btn-h5__more" href="/rankitem?id={{item.ranks.split(',')[0]}}">	
+												<img v-bind:src="item.cover" class="original-rank-list__img">
+												<div class="original-rank-list__content">
+													<p class="original-rank-list__page" v-for="book in item.description">
+														<span class="original-rank-list__num">{{ $index + 1}}</span>
+														{{ book }}
+													</p>
+												</div>
+											</a>
 										</li>
 									</ul>
 								</div>

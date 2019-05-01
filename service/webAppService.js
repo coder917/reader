@@ -17,8 +17,14 @@ exports.get_rank_data = function () {
 	return content;
 }
 
-exports.get_topic_data = function () {
-	var content = fs.readFileSync('./data/topic.json', 'utf-8');
+exports.get_topiclist_data = function () {
+	var content = fs.readFileSync('./data/topiclist.json', 'utf-8');
+	return content;
+}
+
+
+exports.get_topic_data = function (topicid) {
+	var content = fs.readFileSync('./data/topic/'+topicid+'.json', 'utf-8');
 	return content;
 }
 
@@ -34,6 +40,11 @@ exports.get_channel_data = function (channelId) {
 
 exports.get_catelist_data = function (cateId) {
 	var content = fs.readFileSync('./data/catelist/' + cateId + '.json', 'utf-8');
+	return content;
+}
+
+exports.get_rankitem_data = function (rankId) {
+	var content = fs.readFileSync('./data/rankitem/' + rankId + '.json', 'utf-8');
 	return content;
 }
 
@@ -95,27 +106,20 @@ exports.get_search_data = function (start,count,s,source) {
 				"Cookie": cookies
 			}
 		};
-
 		req_obj = http.request(http_request, function (_res) {
 			var callback_content = '';
 			var _this = this;
 			var content = '';
 			_res.setEncoding('utf8');
-
 			_res.on('data', function (chunk) {
 				content += chunk;
 			});
-
 			_res.on('end', function (e) {
 				cb(null, content);
 			});
-
 		});
-
 		req_obj.on('error', function (e) {
-
 		});
-
 		req_obj.end();
 	}
 }
@@ -218,6 +222,132 @@ exports.get_search_tag = function () {
 		});
 		req_obj.on('error', function (e) {
 
+		});
+		req_obj.end();
+	}
+}
+
+exports.get_categorylist_data = function (id) {
+	return function (cb) {
+		var http = require('http');
+
+		var http_request = {
+			hostname: 'dushu.xiaomi.com',
+			port: 80,
+			path: '/hs/v0/android/fiction/category/'+id,
+			method: 'GET'
+		};
+console.log(http_request)
+		req_obj = http.request(http_request, function (_res) {
+			var callback_content = '';
+			var _this = this;
+			var content = '';
+			_res.setEncoding('utf8');
+			_res.on('data', function (chunk) {
+				content += chunk;
+			});
+			_res.on('end', function (e) {
+				cb(null, content);
+			});
+		});
+		req_obj.on('error', function (e) {
+
+		});
+		req_obj.end();
+	}
+}
+
+exports.get_categoryclick_data = function (id) {
+	return function (cb) {
+		var http = require('http');
+		var cookies = fs.readFileSync('./data/cookie_search.txt', 'utf-8')		
+		var http_request = {
+			hostname: 'dushu.xiaomi.com',
+			port: 80,
+			// path: '/store/v0/lib/query/onebox?start='+start+'&count='+count+'&s=' + s+'&source='+source,
+			path: '/store/v0/fiction/category/'+id+'?start=0&count=10&click=1',
+			method: 'GET',
+			headers: {
+				"Cookie": cookies
+			}
+		};
+		req_obj = http.request(http_request, function (_res) {
+			var callback_content = '';
+			var _this = this;
+			var content = '';
+			_res.setEncoding('utf8');
+			_res.on('data', function (chunk) {
+				content += chunk;
+			});
+			_res.on('end', function (e) {
+				cb(null, content);
+			});
+		});
+		req_obj.on('error', function (e) {
+		});
+		req_obj.end();
+	}
+}
+
+exports.get_categorylatest_data = function (id) {
+	return function (cb) {
+		var http = require('http');
+		var cookies = fs.readFileSync('./data/cookie_search.txt', 'utf-8')		
+		var http_request = {
+			hostname: 'dushu.xiaomi.com',
+			port: 80,
+			// path: '/store/v0/lib/query/onebox?start='+start+'&count='+count+'&s=' + s+'&source='+source,
+			path: '/store/v0/fiction/category/'+id+'?start=0&count=10&latest=1',
+			method: 'GET',
+			headers: {
+				"Cookie": cookies
+			}
+		};
+		req_obj = http.request(http_request, function (_res) {
+			var callback_content = '';
+			var _this = this;
+			var content = '';
+			_res.setEncoding('utf8');
+			_res.on('data', function (chunk) {
+				content += chunk;
+			});
+			_res.on('end', function (e) {
+				cb(null, content);
+			});
+		});
+		req_obj.on('error', function (e) {
+		});
+		req_obj.end();
+	}
+}
+
+exports.get_categoryfinish_data = function (id) {
+	return function (cb) {
+		var http = require('http');
+		var cookies = fs.readFileSync('./data/cookie_search.txt', 'utf-8')		
+		var http_request = {
+			hostname: 'dushu.xiaomi.com',
+			port: 80,
+			// path: '/store/v0/lib/query/onebox?start='+start+'&count='+count+'&s=' + s+'&source='+source,
+			path: '/store/v0/fiction/category/'+id+'?start=0&count=10&finish=1',
+			method: 'GET',
+			headers: {
+				"Cookie": cookies
+			}
+		};
+		req_obj = http.request(http_request, function (_res) {
+			var callback_content = '';
+			var _this = this;
+			var content = '';
+			_res.setEncoding('utf8');
+			_res.on('data', function (chunk) {
+				content += chunk;
+			});
+			_res.on('end', function (e) {
+				cb(null, content);
+			});
+		});
+		req_obj.on('error', function (e) {
 		});
 		req_obj.end();
 	}

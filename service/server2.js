@@ -4,9 +4,13 @@ var path = require('path'); //系统路径模块
 var http = require("http");
 var cheerio = require("cheerio");
 var html = "";
-var id=24;
+var id=11518;
 // var url = 'http://dushu.xiaomi.com/hs/v0/android/fiction/book/'+id;
-var url='http://dushu.xiaomi.com/store/v0/fiction/category/'+id+'000000?start=0&count=10&click=1';
+// var url='http://dushu.xiaomi.com/store/v0/fiction/category/'+id+'000000?start=0&count=10&click=1';
+// var url='http://dushu.xiaomi.com/store/v0/fiction/rank?start=0&count=10&r='+id;
+var url='http://dushu.xiaomi.com/store/v0/fiction/list/'+id+'?start=0&count=10';
+// var url='http://dushu.xiaomi.com/store/v0/ad/persistent?start=0&count=10&type=4';
+
 var http_request = {
   hostname: 'dushu.xiaomi.com',
   port: 80,
@@ -27,7 +31,9 @@ res.setEncoding('utf8');
     console.log(html)
     // var str = JSON.stringify(html);
     // console.log(str);
-    var file = path.join(__dirname, '../data/catelist/'+id+'000000.json')
+    // var file = path.join(__dirname, '../data/rankitem/'+'15010'+'.json')
+    var file = path.join(__dirname, '../data/topic/'+id+'.json')
+    
     fs.writeFile(file, html, function (err) {
       if (err) {
         // return console.log(err);

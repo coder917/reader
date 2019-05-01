@@ -10,14 +10,37 @@
 </head>
 
 <body>
+  <div id="appLoading">
+    <img src="/static/img/load.gif" alt="loading" />
+  </div>
   <div id="root">
     <div class="Swipe Swipe_full Destructor">
       <div style="width: 100vw; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-				<div style="width: 100vw;" id="app">
-          <% include include/common-header.html %>
+        <div style="width: 100vw;" id="app">
+          <div class="top">
+            <a class="top__back" href="javascript:history.back(-1)"></a>
+            <span class="top__title" v-for="item in labels" v-if="item.index==id">{{item.label}}</span>
+            <a href="/" class="header-home"></a>
+          </div>
           <div class="top__bd" data-dom-uid="2">
             <div class="new-page">
-              
+              <section class="main-card" id="Tag__62">
+                <ul class="filter-list">
+                  <li>
+                    <ul class="tag-list" id="Tag__63" vp-ignore="">
+                      <li class="tag -crt" @click="all(id)"> 全部 </li>
+                      <li class="tag" v-for="item in categorylist" @click="go(item.category_id,$index+1)"> {{ item.label }} </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <ul class="tag-list" id="Tag__64" vp-ignore="">
+                      <li class="tag -crt" @click="click()"> 热门 </li>
+                      <li class="tag" @click="latest()"> 最新 </li>
+                      <li class="tag" @click="finish()"> 完结 </li>
+                    </ul>
+                  </li>
+                </ul>
+              </section>
               <section class="main-card cate-books">
                 <ul class="book-list">
                   <li data-track="0" v-for="book in items">

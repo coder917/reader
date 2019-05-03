@@ -687,7 +687,6 @@
 							callback(json);
 						}
 					});
-
 				};
 
 				return {
@@ -903,7 +902,8 @@
 					var colorArr = [{
 							bgimg: 'url(../static/img/paper.png)',
 							name: '宣纸',
-							fontcolor: 'rgb(65, 47, 5)'
+							fontcolor: 'rgb(65, 47, 5)',
+							id:"font_normal"
 						},
 						{
 							bgimg: 'url(../static/img/flower3.png)',
@@ -913,7 +913,7 @@
 						{
 							bgimg: 'url(../static/img/ground.png)',
 							name: '山水1',
-							fontcolor: ''
+							fontcolor: ''							
 						},
 						{
 							bgimg: 'url(../static/img/green2.png)',
@@ -973,7 +973,7 @@
 					}
 
 					//夜间模式
-					if (fontColor == '#4e534f') {
+					if (fontColor == 'rgb(165, 165, 165)') {
 						NightMode = true;
 						$('#day_icon').show();
 						$('#night_icon').hide();
@@ -1044,7 +1044,7 @@
 
 						var fontColor = Util.StorageGetter('font_color');
 						//夜间模式
-						if (fontColor == '#4e534f') {
+						if (fontColor == 'rgb(165, 165, 165)') {
 							NightMode = true;
 							$('#day_icon').show();
 							$('#night_icon').hide();
@@ -1260,19 +1260,13 @@
 			for (let i = 0; i < $array.length; i++) {
 
 				audiotts[i]=setTimeout(function () {
-					//console.log($array[i].innerHTML)
-
-					//$('#fiction_container').children('p').each(function (index, element) {
-					//console.log($(this).html())
 					let text = $array[i].innerHTML;
 					console.log(text)
-					
-
 					// 调用语音合成接口
 					// 参数含义请参考 https://ai.baidu.com/docs#/TTS-API/41ac79a6
 					audio = btts({
 						tex: text,
-						tok: '24.7f190123154813715cc23d46e2029dcb.2592000.1556624103.282335-15895030',
+						tok: '24.7e652f304166fd1d21a6ba27c7602c9d.2592000.1559471980.282335-15895030',
 						spd: 15,//0-15
 						pit: 5,
 						vol: 15,
@@ -1280,15 +1274,12 @@
 					}, {
 						volume: 0.3,
 						autoDestory: false,
-						timeout: 10000,
+						timeout: 1000000,
 						hidden: true,
 						onInit: function (htmlAudioElement) {
-
 						},
 						onSuccess: function (htmlAudioElement) {
 							audio = htmlAudioElement;
-							playBtn.innerText = '播放';
-							//console.log(audio.src);
 							arrAduio.push(audio.src);
 						},
 						onError: function (text) {

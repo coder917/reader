@@ -99,7 +99,6 @@ exports.get_search_data = function (start,count,s,source) {
 		var http_request = {
 			hostname: 'dushu.xiaomi.com',
 			port: 80,
-			// path: '/store/v0/lib/query/onebox?start='+start+'&count='+count+'&s=' + s+'&source='+source,
 			path: '/store/v0/lib/query/onebox?' + content,
 			method: 'GET',
 			headers: {
@@ -168,7 +167,6 @@ exports.get_reader_content_data = function (bookid, chapterId) {
 			hostname: 'dushu.xiaomi.com',
 			port: 80,
 			path: '/drm/v0/fiction/link?fiction_id='+bookid+'&chapter_id='+chapterId+'&format=jsonp',
-			// path: '/drm/v0/fiction/link?fiction_id=352876&chapter_id=3&format=jsonp',
 			method: 'GET',
 			headers: {
 				"Cookie": cookies
@@ -264,7 +262,6 @@ exports.get_categoryclick_data = function (id) {
 		var http_request = {
 			hostname: 'dushu.xiaomi.com',
 			port: 80,
-			// path: '/store/v0/lib/query/onebox?start='+start+'&count='+count+'&s=' + s+'&source='+source,
 			path: '/store/v0/fiction/category/'+id+'?start=0&count=10&click=1',
 			method: 'GET',
 			headers: {
@@ -296,7 +293,6 @@ exports.get_categorylatest_data = function (id) {
 		var http_request = {
 			hostname: 'dushu.xiaomi.com',
 			port: 80,
-			// path: '/store/v0/lib/query/onebox?start='+start+'&count='+count+'&s=' + s+'&source='+source,
 			path: '/store/v0/fiction/category/'+id+'?start=0&count=10&latest=1',
 			method: 'GET',
 			headers: {
@@ -328,7 +324,6 @@ exports.get_categoryfinish_data = function (id) {
 		var http_request = {
 			hostname: 'dushu.xiaomi.com',
 			port: 80,
-			// path: '/store/v0/lib/query/onebox?start='+start+'&count='+count+'&s=' + s+'&source='+source,
 			path: '/store/v0/fiction/category/'+id+'?start=0&count=10&finish=1',
 			method: 'GET',
 			headers: {

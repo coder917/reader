@@ -10,8 +10,6 @@ $.get('/ajax/index', function (d) {
 	var reg = /[1-9][0-9]*/g;
 	for (var i = 0; i < storage.length; i++) {
 		if (/\d+$/.test(storage.key(i))) {
-			// array.push(storage.key(i).match(reg)[0]);
-			// var getKey=storage.key(i).match(reg)[0];
 			var getKey = storage.key(i);
 			var getVal = localStorage.getItem(getKey);
 			var jsonObj = JSON.parse(getVal);
@@ -126,8 +124,8 @@ $.get('/ajax/index', function (d) {
 					this.tab_1_class = "Swipe-tab__on";
 					this.tab_2_class = "";
 				} else {
-					this.position = (-windowWidth);
-					this.header_position = index_header_tab_width2;
+					this.position = '-100vw';
+					this.header_position = 'calc(50vw - 90px)';
 					this.tab_2_class = "Swipe-tab__on";
 					this.tab_1_class = "";
 				}

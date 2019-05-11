@@ -153,7 +153,6 @@ $.get('/ajax/index', function (d) {
 					$('#deleteConfirm').addClass('-show');
 					$('#deleteConfirm').show();
 				}.bind(this), 400);
-
 			},
 			cleartime(index) {
 				this.fiction_id = index;

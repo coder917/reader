@@ -20,15 +20,23 @@
           <% include include/common-header.html %>
           <div class="top__bd" data-dom-uid="2" id="app">
             <ul class="fiction-toc" v-for="section in item.toc">
-            
-              <li class="fiction-toc__item fiction-toc__item_free" onclick="location.href='/reader?id={{ item.fiction_id }}'+'&chapter_id={{section.chapter_id}}'">
+              <li v-if="section.price==0" class="fiction-toc__item fiction-toc__item_free"
+                onclick="location.href='/reader?id={{ item.fiction_id }}'+'&chapter_id={{section.chapter_id}}'">
                 <p>{{section.title}}</p>
+              </li>
+              <li v-else class="fiction-toc__item d" v-on:click="tishi()">
+                <p style="color:#a1a1a1">{{section.title}}</p>
               </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="xiaoxi none" id="msg" style="z-index:9999;left: 5%;width: 90%;position: fixed;background:none;top:50%;display: none">
+    <p class="msg"
+      style="background: none repeat scroll 0 0 #000; border-radius: 30px;color: #fff; margin: 0 auto;padding: 1.5em;text-align: center;width: 80%;opacity: 0.8;">
+      由于版权限制，请到正版网站进行阅读。</p>
   </div>
   <script src="/static/script/vue.js"></script>
   <script src="/static/script/zepto.js"></script>

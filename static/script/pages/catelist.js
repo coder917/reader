@@ -232,9 +232,3 @@ setTimeout(function () {
 }, 1000)
 // 		'json');
 // }, 'json');
-
-function go(e) {
-	$.get('/ajax/categoryclick?id=' + e, function (data) {
-		vm.items.splice(0, 1, 1)
-	}, 'json')
-}

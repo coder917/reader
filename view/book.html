@@ -41,12 +41,14 @@
 													</p>
 													<div class="u-grade">
 														<div class="grade"></div>
-														<span class="read">{{score.toFixed(1)}}分/{{ item.score_count }}人评过</span>
+														<span
+															class="read">{{score.toFixed(1)}}分/{{ item.score_count }}人评过</span>
 													</div>
 													<p class="price">{{ item.price }}书币/千字</p>
 													<p class="count">
 														{{ Math.round(item.word_count/10000) }}万字
-														<span class="u-booktag -serial" v-if="item.finish==true">已完结</span>
+														<span class="u-booktag -serial"
+															v-if="item.finish==true">已完结</span>
 														<span class="u-booktag -serial" v-else>连载中</span>
 													</p>
 												</div>
@@ -58,9 +60,16 @@
 													<div class="wrap">
 
 														<ul class="btn-group">
-															<li class="u-btn2" onclick="location.href='/reader?id={{ item.fiction_id }}'">
+															<li class="u-btn2 add" v-if="shelf==false" v-on:click="addBook" style="background:#fff;color:#000;">
+																<span class="book-add-text">加入书架</span>
+															</li>
+															<li class="u-btn2 add" v-else style="background:#fff;color:#626262;border-color:#626262">
+																<span class="book-add-text">已在书架</span>
+															</li>
+															<li class="u-btn2" v-on:click="readBook">
 																<span class="book-dash-text"></span>
 															</li>
+
 														</ul>
 													</div>
 												</div>
@@ -71,7 +80,8 @@
 												</div>
 												<div class="folder-tail">
 													<strong>目录</strong>
-													<div onclick="location.href='/menu?id={{item.fiction_id}}'">{{ updated }}·连载至{{item.latest}}
+													<div onclick="location.href='/menu?id={{item.fiction_id}}'">
+														{{ updated }}·连载至{{item.latest}}
 													</div>
 												</div>
 											</div>
@@ -82,8 +92,11 @@
 											</div>
 											<div class="book-layout">
 												<div class="book-author-vv">
-													<img v-if="comment.author_icon.length>0" v-bind:src="comment.author_icon" class="book-author-avatar" alt="">
-														<img v-else src="/static/img/reader.png" class="book-author-avatar" alt="">
+													<img v-if="comment.author_icon.length>0"
+														v-bind:src="comment.author_icon" class="book-author-avatar"
+														alt="">
+													<img v-else src="/static/img/reader.png" class="book-author-avatar"
+														alt="">
 												</div>
 												<div class="book-cell">
 													<div class="book-meta-comment">
@@ -107,7 +120,7 @@
 											<div class="cnt">
 												<ul class="book-table">
 													<li data-track="0" v-for="book in author_books">
-														<a href="/book?id={{ book.fiction_id }}">
+														<a href="/book?id={{ book.fiction_id }}"  target="_self">
 															<div class="u-book -vertical">
 																<div class="book-cover Lazy_loading Lazy_loaded">
 																	<img alt="{{ book.title }}" v-bind:src="book.cover">
@@ -129,7 +142,8 @@
 												</div>
 												<div class="folder-cnt">
 													<ul class="m-tag -color">
-														<li v-for="tag in item.tags" class="u-tag" title="{{ tag }}">{{ tag }}</li>
+														<li v-for="tag in item.tags" class="u-tag" title="{{ tag }}">
+															{{ tag }}</li>
 													</ul>
 												</div><em class="folder-more"></em>
 											</div>
@@ -175,7 +189,11 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="xiaoxi none" id="msg" style="z-index:9999;left: 5%;width: 90%;position: fixed;background:none;top:50%;display: none">
+		<p class="msg"
+			style="background: none repeat scroll 0 0 #000; border-radius: 30px;color: #fff; margin: 0 auto;padding: 1.5em;text-align: center;width: 80%;opacity: 0.8;">
+			成功加入书架</p>
+	</div>
 
 	<script src="/static/script/vue.js"></script>
 	<script src="/static/script/zepto.js"></script>

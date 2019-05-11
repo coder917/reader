@@ -45,8 +45,7 @@ $.get('/ajax/searchtag', function (d) {
 				var _this = this;
 				$.get('/ajax/search', {
 					start:0,
-					s:s,
-					
+					s:s,					
 				}, function (d) {
 					_this.condition = false;
 					_this.search = d.items;

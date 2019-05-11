@@ -1258,7 +1258,6 @@
 			var $array = $('#fiction_container p');
 			//console.log($array)
 			for (let i = 0; i < $array.length; i++) {
-
 				audiotts[i]=setTimeout(function () {
 					let text = $array[i].innerHTML;
 					console.log(text)
@@ -1267,7 +1266,7 @@
 					audio = btts({
 						tex: text,
 						tok: '24.7e652f304166fd1d21a6ba27c7602c9d.2592000.1559471980.282335-15895030',
-						spd: 15,//0-15
+						spd: 5,//0-15
 						pit: 5,
 						vol: 15,
 						per: 4

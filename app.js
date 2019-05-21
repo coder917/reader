@@ -117,6 +117,16 @@ app.use(controller.get('/user-center', function*(){
 	this.body = yield render('user-center',{nav:'用户中心'});
 }));
 
+app.use(controller.get('/login', function*(){
+	this.set('Cache-Control', 'no-cache');
+	this.body = yield render('login',{nav:'登录'});
+}));
+
+app.use(controller.get('/registe', function*(){
+	this.set('Cache-Control', 'no-cache');
+	this.body = yield render('registe',{nav:'注册'});
+}));
+
 app.use(controller.get('/reader', function*(){
 	this.set('Cache-Control', 'no-cache');
 	this.body = yield render('reader');
@@ -147,7 +157,7 @@ app.use(controller.get('/ajax/reader/content', function*(){
 	this.body = yield service.get_reader_content_data(bookid,chapterId);
 }));
 
-app.use(controller.get('/ajax/reader/chapter', function*(){
+app.use(controller.get('/ajax/menu', function*(){
 	this.set('Cache-Control', 'no-cache');
 	var _this = this;
 	var params = querystring.parse(this.req._parsedUrl.query);

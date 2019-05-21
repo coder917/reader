@@ -32,8 +32,8 @@ https.get(url, (res) => {
         const $ = cheerio.load(html);
         var p = [];
         $(".read-section p").each(function (i, item) { 
-            var text=$(this).text().replace(/\ +/g,"");//去掉空格
-            text=text.replace(/[\r\n\t]/g,"");//去掉回车
+            var text=$(this).text().replace(/\ +/g,"");
+            text=text.replace(/[\r\n\t]/g,"");
             text=text.replace(/　/g,"");
             p.push(text)
         })

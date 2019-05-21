@@ -3,5 +3,7 @@
 		<a href="javascript:" v-on:click="tabSwitch(0)" class="{{ tab_1_class }}"></a>
 		<a href="javascript:" v-on:click="tabSwitch(1)" class="{{ tab_2_class }}"></a>
 		<i v-bind:style="{width:'calc(50vw - 90px)', transitionDuration:  header_duration+'s', transform: 'translate3d('+header_position+ ', 0px, 0px)'}"></i>
-	</div> <em class="header-user" data-href="#page=user_center"  onclick="javascript:location.href='/user-center'"></em> <em class="header-checkin" data-href="#page=checkin"></em>
+	</div> 
+	<em class="header-user" onclick="javascript:location.href='/login'"></em>
+	 <em class="header-checkin" data-href="#page=checkin"></em>
 </div>

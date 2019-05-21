@@ -31,10 +31,10 @@
                     <div class="u-book">
                       <a href="/book?id={{ book.fiction_id }}">
                         <div class="cnt">
-                          <div class="u-book__lt" v-if="$index<3">
+                          <!-- <div class="u-book__lt" v-if="$index<3">
                             <div class="u-book__lt-number">{{$index+1}}</div>
                           </div>
-                          <div class="u-book__lt-triangle" v-if="$index<3"></div>
+                          <div class="u-book__lt-triangle" v-if="$index<3"></div> -->
                           <div class="book-cover Lazy_loading Lazy_loaded" id="Tag__5"><img alt="{{book.title}}"
                               v-bind:src="book.cover">
                             <div class="u-tagRT"></div>
@@ -46,8 +46,14 @@
                             </div>
                             <p class="summary">{{book.summary}}</p>
                             
-                            <p class="u-book__onRead ">
-                            <img src="http://image.read.duokan.com/mfsv2/download/fdsc3/p01DP6uVrgOY/jcc0zobbY1xfYP.png" class="u-book__eye ">今日{{book.ex>10000?Math.round(book.ex/10000):book.ex}}万人在读</p>
+                            <p class="u-book__onRead" v-if="book.ex>10000">
+                            <!-- <img src="http://image.read.duokan.com/mfsv2/download/fdsc3/p01DP6uVrgOY/jcc0zobbY1xfYP.png" class="u-book__eye "> -->
+                            今日{{Math.round(book.ex/10000)}}万人在读
+                          </p>
+                          <p class="u-book__onRead" v-else>
+                            <!-- <img src="http://image.read.duokan.com/mfsv2/download/fdsc3/p01DP6uVrgOY/jcc0zobbY1xfYP.png" class="u-book__eye "> -->
+                            今日{{book.ex}}人在读
+                          </p>
                           </div>
                         </div>
                       </a>

@@ -551,7 +551,7 @@ margin-bottom:0px;
 margin-top:0px;
 }
 .u-book__onRead{
-color:#f35d02;
+color:#0d7e26;
 font-size:12px;
 } 
 .rank-page .book-cover{
@@ -1314,7 +1314,17 @@ _filter:none;
 .u-flex-2{display: flex; display: -webkit-flex;}
 .u-flex-2 .expand{flex:1;-webkit-flex: 1;}
 
-.u-cat-item{width:100%;height:66px;padding:21px 6px 0;background-color:#eee;background-size:100%;background-position:right bottom;background-repeat:no-repeat;color:#515151;-webkit-box-sizing:border-box;}
+.u-cat-item{    width: 100%;
+    height: 36px;
+    padding: 5px;
+    text-align: center;
+    background-color: #6a9acc;
+    background-size: 100%;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    -webkit-box-sizing: border-box;}
+    .u-cat-item.item2{background:#cc6aa0;}
 .u-cat-item h3{font-size:13px;line-height:16px;}
 .u-cat-item .num{font-size:11px;line-height:1em;color:#999;}
 
@@ -3463,6 +3473,8 @@ info {
     width:90px;
     height:90px;
     float:left;
+    line-height: 90px;
+    border-right: 1px solid gray;
 }
 .original-rank-list__content{
     line-height:26px;
@@ -4687,7 +4699,9 @@ body,
     border-right: 1px solid #f0f0f0;
 }
 .tab__on {
-    color: #528ae8 !important;
+    /* color: #528ae8 !important; */
+    color: #016600 !important;
+    
 }
 
 .tab {
@@ -4949,7 +4963,7 @@ body,
 }
 
 .book-h5_no-img__info {
-    margin-left: 27px;
+    /* margin-left: 27px; */
 }
 
 .book-h5_no-img__title {
@@ -4996,9 +5010,10 @@ body,
 
 .top-home__btn li {
     line-height: 2.4;
-    font-size: 12px;
+    font-size: 16px;
     text-align: center;
     -webkit-box-flex: 1;
+    border-right: 1px solid;
 }
 
 .top-home__icon {

@@ -47,7 +47,7 @@ $.get('/ajax/bookid?id=' + id, function (d, status) {
       item: d.item,
       author_books: d.author_books,
       comment: d.comment.top_comment[0],
-      created: new Date(parseInt(d.comment.top_comment[0].create_time) * 1000).toLocaleString().split(' ')[0].replace(/\//g, '-'),
+      // created: new Date(parseInt(d.comment.top_comment[0].create_time) * 1000).toLocaleString().split(' ')[0].replace(/\//g, '-'),
       updated: new Date(parseInt(d.item.updated) * 1000).toLocaleString().split(' ')[0].replace(/\//g, '-'),
       score: d.item.score,
       shelf:shelf
@@ -78,6 +78,9 @@ $.get('/ajax/bookid?id=' + id, function (d, status) {
         }, 500)
       } catch (e) {
 
+      }
+      if(this.comment!=null){
+        this.created=new Date(parseInt(d.comment.top_comment[0].create_time) * 1000).toLocaleString().split(' ')[0].replace(/\//g, '-');
       }
     },
     computed: {

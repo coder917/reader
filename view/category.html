@@ -29,24 +29,24 @@
 												<ul class="u-list-2col">
 													<li v-for="item in male">
 														<a class="btn-h5__more" href="/catelist?id={{item.category_id}}">
-															<div class="u-cat-item" v-bind:style="{backgroundImage:'url('+item.new_image+'!m)'}">
+															<div class="u-cat-item">
 																<h3>{{item.label}}</h3>
-																<p class="num">{{item.fiction_count}}</p>
+																<!-- <p class="num">{{item.fiction_count}}</p> -->
 															</div>
 														</a>
 													</li>
 												</ul>
 											</section>
 											<section class="m-cat-female">
-												<div class="u-ttl u-ttl-icn"> <em class="icn-catagory2"></em>
+												<div class="u-ttl u-ttl-icn"> <em class="icn-catagory4"></em>
 													<h1>网文女频</h1>
 												</div>
 												<ul class="u-list-2col">
 													<li v-for="item in female">
 														<a class="btn-h5__more" href="/catelist?id={{item.category_id}}">	
-															<div class="u-cat-item" v-bind:style="{backgroundImage:'url('+item.new_image+'!m)'}">
+															<div class="u-cat-item item2">
 																<h3>{{item.label}}</h3>
-																<p class="num">{{item.fiction_count}}</p>
+																<!-- <p class="num">{{item.fiction_count}}</p> -->
 															</div>
 														</a>
 													</li>

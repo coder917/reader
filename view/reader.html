@@ -758,7 +758,7 @@
 
 				var getFictionInfoPromise = new Promise(function (resolve, reject) {
 					//阅读器改造代码
-					$.get("/ajax/reader/chapter?id="+Fiction_id, function (data) {
+					$.get("/ajax/menu?id="+Fiction_id, function (data) {
 						if (data.result == 0) {
 							Title = data.item.title;
 							$('#nav_title').html('返回书架');

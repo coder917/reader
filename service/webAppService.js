@@ -1,6 +1,6 @@
 var fs = require('fs');
 exports.get_index_data = function () {
-	var content = fs.readFileSync('./data/test2.json', 'utf-8');
+	var content = fs.readFileSync('./data/index.json', 'utf-8');
 	return content;
 }
 

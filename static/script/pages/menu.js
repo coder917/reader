@@ -4,7 +4,7 @@ console.log(urlarr);
 var id = urlarr[1];
 console.log(id)
 
-$.get('/ajax/reader/chapter?id=' + id, function (d) {
+$.get('/ajax/menu?id=' + id, function (d) {
   new Vue({
     el: '#app',
     data: d,

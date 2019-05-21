@@ -11,18 +11,19 @@
 							<div class="book-h5__cover">
 								<img alt="{{ item.title }}" v-bind:src="item.cover">
 								<div class="u-tagRT"></div>
-								<p class="book-h5__finish" v-if="item.finish==true">完结</p>
-								<p class="book-h5__finish" v-else>连载</p>
+								<!-- <p class="book-h5__finish" v-if="item.finish==true">完结</p>
+								<p class="book-h5__finish" v-else>连载</p> -->
 							</div>
 							<div class="book-h5__info">
 								<p class="book-h5__title">{{ item.title }}</p>
 								<p class="book-h5__author">
-									<img src='/static/img/zuozhe.png'><span class="author">{{ item.authors }}</span>
+									<!-- <img src='/static/img/zuozhe.png'> -->
+									<!-- <span class="author">{{ item.authors }}</span> -->
 								</p>
 								<p class="book-h5__summary">{{ item.summary }}</p>
 								<div class="book-h5__wrap">
-									<div class="book-h5__tag" v-for="tag in item.tags" v-if="$index<3">{{ tag }}</div>
-									<div class="book-h5__tag blue" >{{ Math.round(item.word_count/10000) }}万字</div>
+									<!-- <div class="book-h5__tag" v-for="tag in item.tags" v-if="$index<3">{{ tag }}</div>
+									<div class="book-h5__tag blue" >{{ Math.round(item.word_count/10000) }}万字</div> -->
 								</div>
 							</div>
 						</div>

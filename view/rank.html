@@ -23,7 +23,8 @@
 									<ul class="original-rank-list">
 										<li class="original-rank-list__item" v-if="$index>17" v-for="item in items">
 											<a class="btn-h5__more" href="/rankitem?id={{item.ranks.split(',')[0]}}">	
-												<img v-bind:src="item.cover" class="original-rank-list__img">
+												<!-- <img v-bind:src="item.cover" class="original-rank-list__img"> -->
+												<div class="original-rank-list__img">{{item.name}}</div>
 												<div class="original-rank-list__content">
 													<p class="original-rank-list__page" v-for="book in item.description">
 														<span class="original-rank-list__num">{{ $index + 1}}</span>

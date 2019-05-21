@@ -15,12 +15,15 @@ var status = 0;
 // },'json');
 $.get('/ajax/categorylist?id=' + id, function (d) {
 	categorylist = d;
+	
 }, 'json');
 $.get('/ajax/catelist?id=' + id, function (d) {
 	items = d.items;
 }, 'json');
 // $.get('/ajax/categorylist?id=' + id, function (categorylist) {
 // 	$.get('/ajax/catelist?id=' + id, function (d) {
+console.log(categorylist);
+
 setTimeout(function () {
 	var vm = new Vue({
 		el: '#app',
